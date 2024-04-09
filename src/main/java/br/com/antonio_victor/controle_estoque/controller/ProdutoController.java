@@ -7,8 +7,11 @@ import br.com.antonio_victor.controle_estoque.dto.ProdutoDto;
 import br.com.antonio_victor.controle_estoque.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -19,9 +22,10 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping
-    public ResponseEntity cadastrarProduto(@Valid @RequestBody ProdutoDto produtoDto) {
+    public ResponseEntity cadastrarProduto(@Valid @RequestBody ProdutoDto produtoDto, UriComponentsBuilder uriBuilder) {
         var produto = produtoService.cadastrar(produtoDto);
-        return ResponseEntity.ok().body(produto);
+        var uri = uriBuilder.path("/produto/{codigo}").buildAndExpand(produto.codigo()).toUri();
+        return ResponseEntity.created(uri).body(produto);
     }
     @PostMapping("/entrada")
     public ResponseEntity entradaDeProduto(@Valid @RequestBody EntradaProdutoDto entradaProdutoDto) {

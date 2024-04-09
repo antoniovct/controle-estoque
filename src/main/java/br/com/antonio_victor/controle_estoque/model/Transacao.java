@@ -16,7 +16,7 @@ public class Transacao {
     private int quantidade;
     @Enumerated(EnumType.STRING)
     private TipoTransacao tipoTransacao;
-    @OneToOne
+    @ManyToOne
     private Produto produto;
     public Transacao() {
 

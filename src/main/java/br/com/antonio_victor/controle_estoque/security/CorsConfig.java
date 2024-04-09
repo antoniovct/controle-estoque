@@ -1,4 +1,4 @@
-package br.com.antonio_victor.controle_estoque.config;
+package br.com.antonio_victor.controle_estoque.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
