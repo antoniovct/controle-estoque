@@ -30,8 +30,9 @@ public class SecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST,"/produto", "/produto/entrada").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.PUT, "/produto/{codigo}").hasRole("ADMIN");
                     authorize.requestMatchers(HttpMethod.DELETE, "/produto/{codigo}").hasRole("ADMIN");
-                    authorize.requestMatchers("/pedido-de-venda/**").hasRole("ADMIN");
-                    authorize.requestMatchers("/relatorio-estoque").hasRole("ADMIN");
+                    authorize.requestMatchers(HttpMethod.POST,"/pedido-de-venda/**").hasRole("ADMIN");
+                    authorize.requestMatchers(HttpMethod.PUT,"/pedido-de-venda/**").hasRole("ADMIN");
+                    authorize.requestMatchers(HttpMethod.DELETE,"/pedido-de-venda/**").hasRole("ADMIN");
                     authorize.requestMatchers("/transacao").hasRole("ADMIN");
 
                     authorize.anyRequest().authenticated();
